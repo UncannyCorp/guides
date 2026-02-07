@@ -1,4 +1,4 @@
-# Mac mini RAM Usage Optimization
+# Mac mini RAM Usage Optimization 💾
 
 ## 1. Introduction
 
@@ -10,7 +10,7 @@ This guide gives practical tips to **reduce RAM usage on macOS** so you can keep
 
 ## 2. Tips for RAM Optimization on Mac mini (Apple Silicon)
 
-### 2.1 Control the biggest RAM users first
+### 2.1 Control the biggest RAM users first 🎯
 
 - **LLM / Ollama model residency**  
   Don’t keep large models loaded when idle. Use short `keep_alive` (or unload quickly) for the main model; use a longer keep-alive only for smaller, frequently used models if needed.
@@ -34,7 +34,7 @@ This guide gives practical tips to **reduce RAM usage on macOS** so you can keep
 1. In your app, set a max context/prompt size (e.g. 4k–8k tokens for the main window) and only add retrieved/chunked content on top.
 2. Use RAG or file chunking: index and retrieve by chunk instead of sending whole files; configure chunk size and retrieval count in your pipeline.
 
-### 2.3 Cap container and VM memory
+### 2.3 Cap container and VM memory 🐳
 
 - Prefer **lightweight container runtimes** (e.g. Colima, OrbStack, or plain `colima`) over Docker Desktop when possible—the latter often uses a heavier VM and more RAM.
 
@@ -81,7 +81,7 @@ This guide gives practical tips to **reduce RAM usage on macOS** so you can keep
 2. Check for duplicate Node processes: `ps aux | grep node` (or Activity Monitor → search “node”) and kill extra dev servers.
 3. Only set heap if needed: avoid `NODE_OPTIONS=--max-old-space-size=8192` unless you hit OOM; if you do, use a value that fits your RAM budget (e.g. 2048 or 4096). Remove or lower it if not required.
 
-### 2.6 Protect swap behavior
+### 2.6 Protect swap behavior ⚠️
 
 - macOS swap is automatic and lives on the **internal startup disk**. When memory pressure is high, swap I/O on a full or slow disk makes everything worse.
 
@@ -94,7 +94,7 @@ This guide gives practical tips to **reduce RAM usage on macOS** so you can keep
 1. Check free space: run `df -h /` or use About This Mac → Storage. Aim for at least 15–20 GB free on the internal disk.
 2. Move large data off internal where possible: e.g. set `OLLAMA_MODELS` to a path on an external drive and move or re-download models there.
 
-### 2.7 Observe and react
+### 2.7 Observe and react 📊
 
 - **Activity Monitor → Memory**  
   Focus on **Memory Pressure** (green = OK; yellow/red = over budget). Use this as the main signal.
